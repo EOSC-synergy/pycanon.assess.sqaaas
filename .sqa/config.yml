@@ -1,0 +1,72 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/IFCA-Advanced-Computing/pycanon:
+      branch: main
+      repo: https://github.com/IFCA-Advanced-Computing/pycanon
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/IFCA-Advanced-Computing/pycanon git:
+        commands:
+        - /usr/bin/env sh .sqa/script.skinny-malachite-magpie.sh
+        container: qc.acc_sleepy-lemon-mist
+  QC.Doc:
+    repos:
+      github.com/IFCA-Advanced-Computing/pycanon find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.lousy-aquamarine-fossa.sh
+        container: qc.doc_muzzy-chartreuse-toad
+      github.com/IFCA-Advanced-Computing/pycanon git:
+        commands:
+        - /usr/bin/env sh .sqa/script.smelly-denim-mongrel.sh
+        container: qc.doc_squirrely-ultramarine-dunker
+      github.com/IFCA-Advanced-Computing/pycanon markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.tacky-magnolia-cichlid.sh
+        container: qc.doc_thirsty-olive-crocodile
+      github.com/IFCA-Advanced-Computing/pycanon restructuredtext-lint:
+        commands:
+        - /usr/bin/env sh .sqa/script.paltry-celadon-abyssinian.sh
+        container: qc.doc_snazzy-brown-burmese
+  QC.Lic:
+    repos:
+      github.com/IFCA-Advanced-Computing/pycanon licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.pasty-aqua-slug.sh
+        container: qc.lic_blurry-buff-spider
+  QC.Sec:
+    repos:
+      github.com/IFCA-Advanced-Computing/pycanon bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.skinny-seashell-mouse.sh
+        container: qc.sec_lousy-coral-dingo
+  QC.Sty:
+    repos:
+      github.com/IFCA-Advanced-Computing/pycanon flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.dorky-seashell-quoll.sh
+        container: qc.sty_smelly-bronze-jellyfish
+      github.com/IFCA-Advanced-Computing/pycanon jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.tasty-grey-fox.sh
+        container: qc.sty_cloudy-jade-otter
+  QC.Uni:
+    repos:
+      github.com/IFCA-Advanced-Computing/pycanon pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.hilly-heliotrope-woodpecker.sh
+        container: qc.uni_gummy-cobalt-bulldog
+  QC.Ver:
+    repos:
+      github.com/IFCA-Advanced-Computing/pycanon get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.slaphappy-jade-salamander.sh
+        container: qc.ver_slaphappy-tan-wolfhound
+timeout: 5400
